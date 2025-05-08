@@ -281,6 +281,9 @@ struct QuickActionsView: View {
         .sheet(isPresented: $showingDeviceManagement) {
             DeviceManagementView()
         }
+        .sheet(isPresented: $showingReminders) {
+            RemindersView()
+        }
         // 同样也可以为其他功能添加相应的 sheet
     }
 }

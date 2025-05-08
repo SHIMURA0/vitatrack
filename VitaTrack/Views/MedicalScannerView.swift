@@ -47,12 +47,8 @@ struct MedicalScannerView: View {
             .toolbar {
                 // 左侧关闭按钮
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
-                        print("关闭按钮被点击") // 调试信息
+                    Button("关闭") {
                         presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Image(systemName: "xmark")
-                            .foregroundColor(.white)
                     }
                 }
                 

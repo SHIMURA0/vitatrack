@@ -209,11 +209,8 @@ struct HealthRecordingView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
+                    Button("关闭") {
                         presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Image(systemName: "xmark")
-                            .foregroundColor(.primary)
                     }
                 }
                 

@@ -34,11 +34,8 @@ struct DeviceManagementView: View {
             .toolbar {
                 // 关闭按钮
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
+                    Button("关闭") {
                         presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Image(systemName: "xmark")
-                            .foregroundColor(.primary)
                     }
                 }
                 
