@@ -13,7 +13,7 @@ struct MainTabView: View {
                     Label("用药", systemImage: "cross.case.fill")
                 }
             
-            ReportsView()
+            ProfileArchiveView()
                 .tabItem {
                     Label("档案", systemImage: "archivebox.fill")
                 }

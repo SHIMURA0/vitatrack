@@ -1150,7 +1150,7 @@ struct HealthStatisticsPanel: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             titleSection
-            tabSection
+//            tabSection
             chartSection
             Divider().padding(.horizontal)
             statListSection
@@ -1171,46 +1171,46 @@ struct HealthStatisticsPanel: View {
         }
     }
     
-    private var tabSection: some View {
-        HStack(spacing: 12) {
-            ForEach(0..<4) { index in
-                let isSelected = selectedTab == index
-                let labels = ["疾病", "就诊", "医院", "药物"]
-                let icons = ["heart.fill", "stethoscope", "building.2", "pills"]
-                Button(action: {
-                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                        selectedTab = index
-                        animateChart = false
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                            withAnimation(.easeOut(duration: 0.8)) {
-                                animateChart = true
-                            }
-                        }
-                    }
-                }) {
-                    VStack(spacing: 8) {
-                        Image(systemName: icons[index])
-                            .font(.system(size: isSelected ? 18 : 16))
-                            .foregroundColor(isSelected ? .white : .primary.opacity(0.7))
-                        Text(labels[index])
-                            .font(.caption)
-                            .fontWeight(isSelected ? .semibold : .regular)
-                            .foregroundColor(isSelected ? .white : .primary.opacity(0.7))
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 12)
-                    .background(isSelected ?
-                        Color.accentColor.shadow(.drop(color: .accentColor.opacity(0.3), radius: 5, x: 0, y: 3)) :
-                        Color(.systemGray6))
-                    .cornerRadius(14)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 14)
-                            .stroke(isSelected ? Color.accentColor.opacity(0.1) : Color.clear, lineWidth: 1)
-                    )
-                }
-            }
-        }
-    }
+//    private var tabSection: some View {
+//        HStack(spacing: 12) {
+//            ForEach(0..<4, id: \.self) { index in
+//                let isSelected = selectedTab == index
+//                let labels = ["疾病","就诊","医院","药物"]
+//                let icons = ["heart.fill", "stethoscope", "building.2", "pills"]
+//                Button(action: {
+//                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+//                        selectedTab = index
+//                        animateChart = false
+//                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+//                            withAnimation(.easeOut(duration: 0.8)) {
+//                                animateChart = true
+//                            }
+//                        }
+//                    }
+//                }) {
+//                    VStack(spacing: 8) {
+//                        Image(systemName: icons[index])
+//                            .font(.system(size: isSelected ? 18 : 16))
+//                            .foregroundColor(isSelected ? .white : .primary.opacity(0.7))
+//                        Text(labels[index])
+//                            .font(.caption)
+//                            .fontWeight(isSelected ? .semibold : .regular)
+//                            .foregroundColor(isSelected ? .white : .primary.opacity(0.7))
+//                    }
+//                    .frame(maxWidth: .infinity)
+//                    .padding(.vertical, 12)
+//                    .background(isSelected ?
+//                        Color.accentColor.shadow(.drop(color: .accentColor.opacity(0.3), radius: 5, x: 0, y: 3)) :
+//                        Color(.systemGray6))
+//                    .cornerRadius(14)
+//                    .overlay(
+//                        RoundedRectangle(cornerRadius: 14)
+//                            .stroke(isSelected ? Color.accentColor.opacity(0.1) : Color.clear, lineWidth: 1)
+//                    )
+//                }
+//            }
+//        }
+//    }  
     
     private var chartSection: some View {
         ZStack {
