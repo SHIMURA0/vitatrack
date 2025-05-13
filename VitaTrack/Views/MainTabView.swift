@@ -10,18 +10,19 @@ struct MainTabView: View {
             
             MedicalRecordsView()
                 .tabItem {
-                    Label("病历", systemImage: "doc.text.fill")
+                    Label("用药", systemImage: "cross.case.fill")
                 }
             
             ReportsView()
                 .tabItem {
-                    Label("报告", systemImage: "chart.bar.fill")
+                    Label("档案", systemImage: "archivebox.fill")
                 }
             
-            MonitoringView()
+            MedicalCareView()
                 .tabItem {
-                    Label("监控", systemImage: "heart.fill")
+                    Label("就医", systemImage: "stethoscope")
                 }
+            
             
             MedicationView()
                 .tabItem {

@@ -620,9 +620,9 @@ struct StatItem: View {
     
     var body: some View {
         VStack(spacing: 4) {
-            Text(title)
+                Text(title)
                 .font(.caption)
-                .foregroundColor(.secondary)
+                    .foregroundColor(.secondary)
             
             Text(value)
                 .font(.title3)
@@ -664,7 +664,7 @@ struct MetricDetailCard: View {
                 }
                 
                 Text(title)
-                    .font(.headline)
+                .font(.headline)
                     .fontWeight(.bold)
                 
                 Spacer()
@@ -765,7 +765,7 @@ struct KeyMetricView: View {
                 .font(.caption)
                 .foregroundColor(.secondary)
             
-            Text(value)
+                Text(value)
                 .font(.headline)
                 .fontWeight(.bold)
             
@@ -827,12 +827,12 @@ struct QuickActionsView: View {
         QuickAction(title: "扫描", icon: "qrcode", color: .purple),
         QuickAction(title: "设备", icon: "applewatch", color: .green),
         QuickAction(title: "提醒", icon: "alarm.fill", color: .orange),
-        QuickAction(title: "更多", icon: "ellipsis.circle.fill", color: .gray)
+//        QuickAction(title: "更多", icon: "ellipsis.circle.fill", color: .gray)
     ]
     
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 20) {
+//        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 35) {
                 // 修改为单独处理每个按钮，以便添加不同的动作
                 
                 // 记录按钮
@@ -864,14 +864,14 @@ struct QuickActionsView: View {
                 }
                 
                 // 更多按钮
-                Button(action: {
-                    // 更多选项的处理逻辑
-                }) {
-                    QuickActionButton(action: quickActions[4])
-                }
+//                Button(action: {
+//                    // 更多选项的处理逻辑
+//                }) {
+//                    QuickActionButton(action: quickActions[4])
+//                }
             }
             .padding(.horizontal)
-        }
+//        }
         .padding(.vertical, 10)
         .sheet(isPresented: $showingHealthRecording) {
             HealthRecordingView()
@@ -956,16 +956,16 @@ struct FeatureCard: View {
                 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(feature.title)
-                        .font(.headline)
+                .font(.headline)
                         .foregroundColor(.primary)
                     
                     Text("查看详情")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                }
-                
-                Spacer()
-                
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                    
+                    Spacer()
+                    
                 Image(systemName: "chevron.right")
                     .font(.caption)
                     .foregroundColor(.secondary)
@@ -1014,12 +1014,12 @@ struct TodayRemindersCard: View {
                         .foregroundColor(.primary)
                     
                     Text("12:00 | 每天两次")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                }
-                
-                Spacer()
-                
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                    
+                    Spacer()
+                    
                 Button(action: {}) {
                     Text("完成")
                         .font(.caption)
@@ -1065,8 +1065,8 @@ struct TodayRemindersCard: View {
                     .padding(.vertical, 6)
                     .background(Color.orange.opacity(0.1))
                     .cornerRadius(12)
-            }
-            .padding()
+                }
+                .padding()
             .background(Color(.systemBackground))
             .cornerRadius(16)
         }
@@ -1121,7 +1121,7 @@ struct ArticleCard: View {
             
             HStack {
                 Text("健康专栏")
-                    .font(.caption)
+                        .font(.caption)
                     .foregroundColor(.white)
                     .padding(.horizontal, 8)
                     .padding(.vertical, 4)
@@ -1159,4 +1159,4 @@ struct QuickAction {
 
 #Preview {
     DashboardView()
-}
+} 
