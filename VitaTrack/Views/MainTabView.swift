@@ -8,7 +8,7 @@ struct MainTabView: View {
                     Label("概览", systemImage: "house.fill")
                 }
             
-            MedicalRecordsView()
+            MedicationManagerView()
                 .tabItem {
                     Label("用药", systemImage: "cross.case.fill")
                 }
