@@ -22,7 +22,6 @@ struct ProfileArchiveView: View {
     @State private var selectedTab: Int = 0
     @State private var showingAddRecord = false
     @State private var showingDisease: KingDisease? = nil
-    @State private var showingTimelineNode: DiseaseTimelineNode? = nil
     @State private var searchText = ""
     
     // 示例数据
@@ -107,10 +106,7 @@ struct ProfileArchiveView: View {
                 Text("添加新档案记录")
             }
             .sheet(item: $showingDisease) { disease in
-                DiseaseTimelineView(disease: disease, showingNode: $showingTimelineNode)
-            }
-            .sheet(item: $showingTimelineNode) { node in
-                DiseaseTimelineNodeDetailView(node: node)
+                DiseaseTimelineView(disease: disease)
             }
         }
     }
@@ -283,7 +279,7 @@ struct DiseaseHistorySection: View {
 // 疾病时间线弹窗
 struct DiseaseTimelineView: View {
     let disease: KingDisease
-    @Binding var showingNode: DiseaseTimelineNode?
+    @State private var showingNode: DiseaseTimelineNode? = nil
     @Environment(\.dismiss) var dismiss
     @State private var animateNodes = false
     
@@ -339,10 +335,13 @@ struct DiseaseTimelineView: View {
                     
                     // 时间线
                     VStack(spacing: 0) {
-                        ForEach(Array(disease.timeline.enumerated()), id: \.element.id) { index, node in
+                        ForEach(disease.timeline, id: \.id) { node in
+                            let index = disease.timeline.firstIndex(where: { $0.id == node.id }) ?? 0
                             VStack(spacing: 0) {
                                 // 节点按钮
-                                Button(action: { showingNode = node }) {
+                                Button(action: { 
+                                    showingNode = node 
+                                }) {
                                     HStack(alignment: .top, spacing: 18) {
                                         // 节点标记和线条
                                         ZStack(alignment: .center) {
@@ -510,6 +509,9 @@ struct DiseaseTimelineView: View {
                     }
                 }
             }
+        }
+        .sheet(item: $showingNode) { node in
+            DiseaseTimelineNodeDetailView(node: node)
         }
     }
 }
@@ -1170,48 +1172,7 @@ struct HealthStatisticsPanel: View {
                 .fontWeight(.bold)
         }
     }
-    
-//    private var tabSection: some View {
-//        HStack(spacing: 12) {
-//            ForEach(0..<4, id: \.self) { index in
-//                let isSelected = selectedTab == index
-//                let labels = ["疾病","就诊","医院","药物"]
-//                let icons = ["heart.fill", "stethoscope", "building.2", "pills"]
-//                Button(action: {
-//                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-//                        selectedTab = index
-//                        animateChart = false
-//                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-//                            withAnimation(.easeOut(duration: 0.8)) {
-//                                animateChart = true
-//                            }
-//                        }
-//                    }
-//                }) {
-//                    VStack(spacing: 8) {
-//                        Image(systemName: icons[index])
-//                            .font(.system(size: isSelected ? 18 : 16))
-//                            .foregroundColor(isSelected ? .white : .primary.opacity(0.7))
-//                        Text(labels[index])
-//                            .font(.caption)
-//                            .fontWeight(isSelected ? .semibold : .regular)
-//                            .foregroundColor(isSelected ? .white : .primary.opacity(0.7))
-//                    }
-//                    .frame(maxWidth: .infinity)
-//                    .padding(.vertical, 12)
-//                    .background(isSelected ?
-//                        Color.accentColor.shadow(.drop(color: .accentColor.opacity(0.3), radius: 5, x: 0, y: 3)) :
-//                        Color(.systemGray6))
-//                    .cornerRadius(14)
-//                    .overlay(
-//                        RoundedRectangle(cornerRadius: 14)
-//                            .stroke(isSelected ? Color.accentColor.opacity(0.1) : Color.clear, lineWidth: 1)
-//                    )
-//                }
-//            }
-//        }
-//    }  
-    
+ 
     private var chartSection: some View {
         ZStack {
             if selectedTab == 0 {
